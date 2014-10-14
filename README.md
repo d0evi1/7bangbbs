@@ -5,7 +5,7 @@
 
 >部署环境：sae 
 
->代码编写：php (with thinkphp) 
+>代码编写：php (with thinkphp/bootstrap) 
 
 
 >(闲暇时会继续逐步完善中.)
