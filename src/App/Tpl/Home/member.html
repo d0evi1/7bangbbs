@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-cn">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+	<meta name="author" content="x-team" />
+	<meta name="Copyright" content="7bangbbs.sinaapp.com" />
+	<meta name="description" content="七磅，一个神奇的网站" />
+	<title>7bangbbs</title>
+	<script src="js/jquery-1.8.3.js"> </script>
+	<script src="/bootstrap/js/bootstrap.js"></script>
+	<link href="/bootstrap/css/bootstrap.css" rel="stylesheet" media="screen">
+	
+</head>
+
+<body>
+	<?php include_once("google_analytics.php")?>
+	<include file="./App/Tpl/default/header.html"/>
+	
+	<div class='container'  style="margin-top:40px">
+		<div class="row clearfix">
+			<div class="col-md-1 column">
+			</div>
+			
+			<div class="col-md-7 column">
+				<div class="page-header">
+					<div class="media">
+						<div class="col-md-3 column">
+							<img alt="140x140" src="http://lorempixel.com/140/140/" class="img-circle" />
+						</div>
+						
+						
+						<div class="col-md-9 column">
+							<h1>{$t_member.name}</h1> 
+							<br>
+							<h5>我有点懒，还未填写个人资料哦.</h5>
+							<div>新浪微博：<a href="http://weibo.com/{$t_member.sina_weibo}">{$t_member.sina_weibo}</a></div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						个人中心
+					</div>
+					
+					<table class="table">
+						<tr>
+							<td class="col-sm-2"><h5>个人等级:</h5></td>
+							<td><h5>上校</h5></td>
+						</tr>
+						<tr>
+							<td class="col-sm-2"><h5>个人积分:</h5></td>
+							<td><h5>3000分</h5></td>
+						</tr>
+						<tr>
+							<td class="col-sm-2"><h5>发帖数:</h5></td>
+							<td><h5>{$t_member.articles}</h5></td>
+						</tr>
+						<tr>
+							<td class="col-sm-2"><h5>回帖数:</h5></td>
+							<td><h5>{$t_member.replies}</h5></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<div class="col-md-4 column">
+			</div>
+		</div>
+	</div>
+	
+	<include file="./App/Tpl/default/footer.html"/>
+</body>
+</html>

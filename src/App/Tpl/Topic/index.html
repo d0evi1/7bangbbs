@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-cn">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+	<meta name="author" content="x-team" />
+	<meta name="Copyright" content="7bangbbs.sinaapp.com" />
+	<meta name="description" content="七磅，一个神奇的网站" />
+	<title>7bangbbs</title>
+	<script src="/js/jquery-1.8.3.js"> </script>
+	<script src="/bootstrap/js/bootstrap.js"></script>
+	<link href="/bootstrap/css/bootstrap.css" rel="stylesheet" media="screen"/>
+	
+</head>
+
+<body>
+	<?php include_once("google_analytics.php")?>
+	<include file="./App/Tpl/default/header.html"/>
+	
+	<div class='container' style="margin-top:80px">
+		<div class="row clearfix">
+			<div class="col-md-1 column">
+			</div>
+			
+			<div class="col-md-7 column">
+				<div class="panel panel-default">
+					<table class="table table-bordered well">
+						<tr>
+							<td width="24">
+								<div class="topic-title">
+									<div class="topic-title-main float-left">
+										<h2>{$art.title}</h2>
+										<div class="topic-title-date">
+										By <a href="/member/1">{$art.user_name}</a> at {$art.edit_time} • 19次点击 • <a href="#new-comment">回复</a> • <a href="/favorites?act=add&id=13" title="点击收藏">收藏</a>        </div>
+										<hr>
+									</div>
+									
+									<div class="detail-avatar">
+										<a href="/member/1"><img src="/static/grey.gif" data-original="http://soho-avatar.stor.sinaapp.com/1.jpg" alt="" />    </a>
+									</div>
+								</div>
+									
+								<div class="topic-content">
+									<p>{$art.content}</p>
+								</div>
+							</td>
+						</tr>
+					</table>
+				</div>
+					
+				<div class="panel panel-default">
+					<table class="table table-bordered table-condensed well">
+						<tr>
+							<td width="24">
+								<div class="title">
+									<div class="float-left">添加一条新回复</div>
+									<div class="float-right"><a href="#">↑ 回到顶部</a></div>
+									<div class="c"></div> 
+								</div>
+							
+								
+								<div class="main-box">
+									<form action="/t-13#new-comment" method="post">
+										<input type="hidden" name="formhash" value="a4dcb7bd" />
+										<p><textarea style="width:100%;height:100%;" id="id-content" name="content" class="comment-text mll"></textarea></p>
+										
+										<div class="c"></div>
+
+										<p>
+											<div class="float-left"><input type="submit" value=" 提 交 " name="submit" class="textbtn" /></div>
+											<div class="float-right fs12 grey">• 请尽量让自己的回复能够对别人有帮助，不欢迎灌水，发现无内容测试、灌水一律禁言！</div>
+											<div class="c"></div> 
+										</p>
+									</form>
+								</div>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			
+			<div class="col-md-4 column"></div>
+		</div>
+	</div>
+	
+	<include file="./App/Tpl/default/footer.html"/>
+</body>
+</html>

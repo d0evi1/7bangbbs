@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-cn">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+	<meta name="author" content="x-team" />
+	<meta name="Copyright" content="7bangbbs.sinaapp.com" />
+	<meta name="description" content="七磅，一个神奇的网站" />
+	<title>7bangbbs</title>
+	<script src="/js/jquery-1.8.3.js"> </script>
+	<script src="/bootstrap/js/bootstrap.js"></script>
+	<link href="/bootstrap/css/bootstrap.css" rel="stylesheet" media="screen">
+	
+	<link rel="stylesheet" href="/kindeditor/themes/simple/simple.css" />
+	<script charset="utf-8" src="/kindeditor/kindeditor-min.js"></script>
+	<script charset="utf-8" src="/kindeditor/lang/zh_CN.js"></script>
+	<script>
+		var editor;
+		
+		KindEditor.ready(function(KE) {
+			editor = KE.create('#input_topic_content', {
+				resizeMode : 1,
+				allowPreviewEmoticons : false,
+				allowUpload : false,
+				items : [
+				'source', '|', 'fontname', 'fontsize', '|', 'textcolor', 'bgcolor', 'bold', 'italic', 'underline',
+				'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+				'insertunorderedlist', '|', 'emoticons', 'image', 'link']
+			   });
+		});
+	</script>
+	
+	
+</head>
+
+<body>
+	<?php include_once("google_analytics.php")?>
+	<include file="./App/Tpl/default/header.html"/>
+	
+	<div class='container' style="margin-top:50px">
+		<div class="row clearfix">
+			<div class="col-md-1 column">
+			</div>
+			
+			<div class="col-md-7 column">
+				<div class="page-header">
+					<p>
+						<h5 class='title'>新建话题</h5>
+					</p>
+				</div>
+			
+				<div>
+					<form role="form" accept-charset="UTF-8" id="form_topic" action="/topic/new_topic" method="post">
+						<div class="form-group">
+							<label for="input_topic_title" class="control-label">标题：</label>
+						</div>
+						<div class="form-group">
+							<input id="input_topic_title" name="input_topic_title" class="col-md-12" type="text"/>
+						</div>
+						
+						<div class="form-group">
+							<label for="input_topic_content" class="control-label">正文:</label>
+						</div>
+						
+						<div class="form-group">
+							<textarea tabindex="2" rows="15" id="input_topic_content" name="input_topic_content"></textarea>
+							
+							
+						</div>
+						
+						<div class="form-group">
+							<label for="input_topic_category" class="control-label">类别:</label>
+							<select id="input_topic_category" name="input_topic_category">
+								<volist name="t_categories" id="vo" key = "cat">
+									<option value="{$cat}">{$vo.name}</option>
+								</volist>
+							</select>
+						</div>
+						
+						<div class="string input optional control-group" id="btn_input_group">
+							<div class="controls">
+								<div class="bn-flat">
+									<input id="post-btn" name="new_submit" type="submit" value="好了，发言">
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<include file="./App/Tpl/default/footer.html"/>
+</body>
+</html>

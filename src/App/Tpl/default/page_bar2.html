@@ -1,0 +1,8 @@
+<div class="btn-group">
+	<a type="button" class="btn btn-default btn-sm" href="/show/timeline/{$prev_page}">&laquo;</a>
+	<for start="$cur_page_head" end="$cur_page_head+$cur_page_range">
+		<a type="button" class="btn btn-default btn-sm" href="/show/timeline/{$i}">{$i}</a>
+	</for>
+	<button type="button" class="btn btn-default btn-sm">...</button>
+	<a type="button" class="btn btn-default btn-sm" href="/show/timeline/{$next_page}">&raquo;</a>
+</div>

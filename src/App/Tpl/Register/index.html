@@ -1,0 +1,194 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-cn">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+	<meta name="author" content="x-team" />
+	<meta name="Copyright" content="7bangbbs.sinaapp.com" />
+	<meta name="description" content="七磅，一个神奇的网站" />
+	<title>7bangbbs</title>
+	<script src="http://code.jquery.com/jquery.js"></script>
+	<script src="js/jquery-1.8.3.js"> </script>
+	<script src="js/jquery.validate.js"></script>
+	<script src="bootstrap/js/bootstrap.js"></script>
+	<link href="bootstrap/css/bootstrap.css" rel="stylesheet" media="screen">
+
+
+	<script>
+		$.validator.setDefaults({
+			submitHandler: function() { alert("submitted!");form.submit();  }
+		});
+
+		$().ready(function() {
+			
+			// validate signup form on keyup and submit
+			$("#reg_form").validate({
+				rules: {
+					reg_user_name: {
+						required: true,
+						minlength:2
+					},					
+					reg_user_email: {
+						required: true,
+						email: true
+					},
+					reg_user_password: {
+						required: true,
+						minlength: 5,
+					},
+					reg_user_password2: {
+						required: true,
+						minlength: 5,
+						equalTo: "#reg_user_password"
+					},
+					reg_captcha: {
+						required: true,
+						maxlength: 4
+					}
+				},
+				messages: {
+					reg_user_name: {
+						required: "请输入用户名",
+						minlength: "用户名最小长度为2"
+					},
+					reg_user_email: "请输入合法的email地址",
+					reg_user_password: {
+						required: "请输入密码",
+						minlength: "您的密码长度最小为5个字符"
+					},
+					reg_user_password2: {
+						required: "请输入密码",
+						minlength: "您的密码长度最小为5个字符",
+						equalTo: "请输入密码一致"
+					},
+					reg_captcha: {
+						required: "请输入验证码",
+						maxlength: "已超最大长度" 
+					}
+				}
+			});
+		});
+	</script>
+	
+	<style type="text/css">
+		#reg_form input.error { border: 1px solid red; }  
+		#reg_form label.error {
+			color: red; 
+			margin-left: 10px;
+			width: auto;
+			display: inline;
+		}
+		
+		#reg_form{
+			width:600px;
+		}
+	</style>
+	
+</head>
+
+<body>
+	<?php include_once("google_analytics.php")?>
+	<include file="./App/Tpl/default/header.html"/>
+	
+	<div class='container' style="margin-top:50px">
+			
+		<div class="row clearfix">
+			<div class="col-md-2 column">
+			</div>
+			
+			<div class="col-md-6 column">
+				<div class="page-header">
+						<p>
+						<h3 class='title'>创建你的账号</h3>
+						</p>
+				</div>
+					
+				<form accept-charset="UTF-8" action="/register" class="form-horizontal" id="reg_form" method="post" novalidate="novalidate" role="form">
+					<div class="form-group">
+						<label for="reg_user_name" class="col-sm-3 control-label">* 用户名：</label>
+						<div class="col-sm-5">
+							<input type="text" class="form-control" id="reg_user_name" name="reg_user_name">
+						</div>
+					</div>
+					<div class="form-group">
+						 <label for="reg_user_email" class="col-sm-3 control-label">* Email：</label>
+						<div class="col-sm-5">
+							<input type="email" class="form-control" id="reg_user_email" name="reg_user_email">
+						</div>
+					</div>
+					<div class="form-group">
+						 <label for="reg_user_password" class="col-sm-3 control-label">* 新密码：</label>
+						<div class="col-sm-5">
+							<input type="password" class="form-control" id="reg_user_password" name="reg_user_password">
+						</div>
+					</div>
+					<div class="form-group">
+						 <label for="reg_user_password2" class="col-sm-3 control-label">* 重复密码：</label>
+						<div class="col-sm-5">
+							<input type="password" class="form-control" id="reg_user_password2" name="reg_user_password2">
+						</div>
+					</div>
+					<div class="form-group">
+						 <label for="reg_captcha" class="col-sm-3 control-label">* 验证码：</label>
+						<div class="col-sm-5">
+							<p>
+								<img src="/seccode.php" for="reg_captcha" align="absmiddle" class="captcha-img"/>
+								<span class="tips">看不清？<a href="7bangbbs.sinaapp.com" id="cap_resend">换一个</a></span>
+							</p>
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label for="reg_captcha" class="col-sm-3 control-label"></label>
+						<div class="col-sm-5">
+							<input id="reg_captcha" name="reg_captcha" type="text"/>
+						</div>
+					</div>
+					
+
+					
+					<div class="form-group">
+						<label for="reg_checkbox" class="col-sm-3 control-label"></label>
+						<div class="col-sm-5">
+							<label class="checkbox" for="reg_checkbox">
+								<input name="reg_check_hide" type="hidden" value="0" />
+								<input checked="checked" id="reg_checkbox" type="checkbox" value="1" />
+								同意
+								<a href="/terms" target="_blank">服务条款</a> 
+								和
+								<a href="/privacy" target="_blank">相关政策</a>
+							</label>
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label for="reg_checkbox" class="col-sm-3 control-label"></label>
+						<div class="col-sm-5">
+							<p><input class="btn btn-primary btn-large" name="commit" type="submit" value="立即注册" /></p>
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label for="reg_checkbox" class="col-sm-3 control-label"></label>
+						<div class="col-sm-5">
+							<p class='muted'>
+								<i class='icon-user'></i>
+								已经注册?
+								<a href="/login">从这登陆 &rarr;</a>
+							</p>
+						</div>
+					</div>
+				</form>
+				
+				
+			</div>
+			
+			<div class="col-md-4 column">
+			</div>
+			
+		</div>
+	</div>
+
+	<include file="./App/Tpl/default/footer.html"/>
+</body>
+</html>

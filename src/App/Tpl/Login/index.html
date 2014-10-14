@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-cn">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+	<meta name="author" content="x-team" />
+	<meta name="Copyright" content="7bangbbs.sinaapp.com" />
+	<meta name="description" content="七磅，一个神奇的网站" />
+	<title>7bangbbs</title>
+	<script src="http://code.jquery.com/jquery.js"></script>
+	<script src="/bootstrap/js/bootstrap.js"></script>
+	<link href="/bootstrap/css/bootstrap.css" rel="stylesheet" media="screen">
+	<script src="/js/jquery.validate.js"></script>
+
+	
+	<script>
+		$.validator.setDefaults({
+			submitHandler: function() { alert("submitted!");form.submit();  }
+		});
+
+		$().ready(function() {
+			
+			// validate signup form on keyup and submit
+			$("#form_login").validate({
+				rules: {
+					login_username: {
+						required: true,
+						minlength:2
+					},					
+					login_password: {
+						required: true,
+						minlength: 5,
+					},
+					login_captcha: {
+						required: true,
+						maxlength: 4
+					}
+				},
+				messages: {
+					login_username: {
+						required: "请输入用户名",
+						minlength: "您输入的用户名长度过短"
+					},
+					login_password: {
+						required: "请输入密码",
+						minlength: "您的密码长度最小为5个字符"
+					},
+					login_captcha: {
+						required: "请输入验证码",
+						maxlength: "已超最大长度" 
+					}
+				}
+			});
+		});
+	</script>
+	
+	<style type="text/css">
+		#form_login input.error { border: 1px solid red; }  
+		#form_login label.error {
+			color: red; 
+			margin-left: 10px;
+			width: auto;
+			display: inline;
+		}
+		
+		#form_login{
+			width:600px;
+		}
+	</style>
+	
+</head>
+
+<body>
+	<?php include_once("google_analytics.php")?>
+	<include file="./App/Tpl/default/header.html"/>
+
+	<div class="container" style="margin:50px;">
+		<div class="row clearfix">
+			<div class="col-md-2 column">
+			</div>
+			
+			<div class="col-md-6 column">
+				<div class="page-header">
+					<p>
+						<div class='brand-logo'>
+							<a href="/">
+								<img alt="Fleetio" height="56" src="/logo2.png" width="218" />
+							</a>
+						</div>
+						<div>
+						<h3 class='title'><strong>登陆</strong></h3>
+						</div>
+					</p>
+				</div>
+				
+				<form accept-charset="UTF-8" action="/login" id="form_login" method="post">
+					<div style="margin:0;padding:0;display:inline">
+						<input name="utf8" type="hidden" value="&#x2713;" />
+						<input name="authenticity_token" type="hidden" value="Lw3M5izZkM8GivdSre+dXcdyTXfrrUHD9TsgODBtf50=" />
+					</div>
+					
+					<div class="form-group">
+						<label for="login_username" class="col-sm-2 control-label">账号</label>
+						<input id="login_username" name="login_username" size="30" type="text" />
+					</div>
+					
+					<div class="form-group">
+						<label for="login_password" class="col-sm-2 control-label">密码</label>
+						<input id="login_password" name="login_password" size="30" type="password" />
+					</div>
+					
+					<div class="form-group">
+						 <label for="login_captcha" class="col-sm-2 control-label">验证码</label>
+						
+							<p>
+								<img src="/seccode.php" for="login_captcha" align="absmiddle" class="captcha-img"/>
+								看不清？<a href="/seccode.php" id="cap_resend">换一个</a>
+							</p>
+					</div>
+					
+					<div class="form-group">
+						<label for="login_captcha" class="col-sm-2 control-label"></label>
+						<input id="login_captcha" name="login_captcha" type="text"/>
+					</div>
+					
+					<div class="form-group">
+						<div class="col-sm-1"></div>
+						<label class='col-sm-3 checkbox' for='login_rememberme'>
+							<input id="login_rememberme" name="login_rememberme" type="checkbox" value="1" />
+							下次自动登陆
+						</label>
+						<a href="/users/password/new" class="btn btn-link">忘记你的密码？</a>
+					</div>
+					
+					<div class="form-group">
+						<div class="col-sm-1"></div>
+						<div class="col-sm-6">
+							<input class="btn btn-primary" name="commit" type="submit" value="登陆"/>
+							<a href="/register" class="btn btn-primary" name="reg">还未注册?</a>
+						</div>
+					</div>
+				</form>
+				
+				<if condition="$error_str neq ''"> 
+					<p>{$error_str}</p>
+				</if>
+			</div>
+		</div>
+		
+		<div class="col-md-4 column">
+		</div>
+	
+	</div>
+	
+	<include file="./App/Tpl/default/footer.html"/>
+</body>
+</html>

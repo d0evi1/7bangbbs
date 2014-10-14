@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-cn">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+	<meta name="author" content="x-team" />
+	<meta name="Copyright" content="7bangbbs.sinaapp.com" />
+	<meta name="description" content="七磅，一个神奇的网站" />
+	<title>7bangbbs</title>
+	<script src="/js/jquery-1.8.3.js"> </script>
+	<script src="/bootstrap/js/bootstrap.js"></script>
+	<link href="/bootstrap/css/bootstrap.css" rel="stylesheet" media="screen"/>
+	
+</head>
+
+<body>
+	<?php include_once("google_analytics.php")?>
+	<include file="./App/Tpl/default/header.html"/>
+	
+	<div class='container'  style="margin-top:55px">
+		<div class="row clearfix">
+			<div class="col-md-1 column"></div>
+			
+			<div "col-md-7 column">
+				<a href="#" class="pull-left"><img src="/App/Image/bar/head_bar.jpg" alt=""></a>
+			</div>
+		</div>
+		<div class="row clearfix">
+			<div class="col-md-1 column">
+			</div>
+			
+			<div class="col-md-7 column">
+				<div class="page-header">
+					<ul class="nav nav-pills">
+					<li><a href='/'>最新</a></li>
+					<volist name="t_categories" id="vo">
+						<if condition="$vo['id'] eq $category_id"> 
+							<li class="active"><a href="/show/category/{$vo.id}">{$vo.name}</a></li> 
+						<else/>
+							<li><a href="/show/category/{$vo.id}">{$vo.name}</a></li>
+						</if>
+					</volist>
+					</ul>
+				</div>
+				
+				<div class="panel panel-default">
+					<include file="./App/Tpl/default/head_bar.html"/>
+					
+					<table class="table table-bordered table-striped table-condensed">
+						<volist name="t_articles" id="vo" >
+							<tr>
+								<td width="24">
+									<div class="col-md-11 column">
+										<div class="media">
+											<a href="#" class="pull-left"><img src="{$vo.uavatar}" height="48" width="48" class="media-object" alt=""></a>
+											<div class="media-body">
+												<h4 class="media-heading">
+													<a href="/topic/article/{$vo.id}">{$vo.title}</a>
+												</h4> 
+												{$vo.author}    • 
+												<a href="">{$vo.cname}</a>      •{$vo.add_time|showtime=###} 
+											</div>
+										</div>
+									</div>
+									<div class="col-md-1 column">
+										<if condition="$vo['comments'] gt 0">
+										<div>
+											<span class="badge pull-right">{$vo.comments}</span>
+										</div>
+										</if>
+									</div>
+								</td>
+							</tr>
+						</volist>
+					</table>
+					
+				</div>
+			</div>
+			
+			<div class="col-md-4 column">
+			</div>
+		</div>
+	</div>
+	
+	<include file="./App/Tpl/default/footer.html"/>
+</body>
+</html>

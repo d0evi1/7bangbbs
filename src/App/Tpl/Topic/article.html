@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-cn">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+	<meta name="author" content="x-team" />
+	<meta name="Copyright" content="7bangbbs.sinaapp.com" />
+	<meta name="description" content="七磅，一个神奇的网站" />
+	<title>7bangbbs</title>
+	<script src="/js/jquery-1.8.3.js"> </script>
+	<script src="/bootstrap/js/bootstrap.js"></script>
+	<link href="/bootstrap/css/bootstrap.css" rel="stylesheet" media="screen">
+	
+</head>
+
+<body>
+	<?php include_once("google_analytics.php")?>
+	<include file="./App/Tpl/default/header.html"/>
+	
+	<div class='container' style="margin-top:80px">
+		<div class="row clearfix">
+			<div class="col-md-1 column">
+			</div>
+			
+			<div class="col-md-7 column">
+				<div class="panel panel-default">
+					<table class="table table-bordered table-condensed" style="table-layout:fixed;">
+						<tr>
+							<td>
+							<div class="col-md-10 float-left">
+								<h4><strong>{$art.title}</strong></h4>
+									<div>
+										发表于&nbsp;&nbsp;{$art.add_time|showtime=###}
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$art.views}次阅读
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;撸主：&nbsp;&nbsp;<a href="/home/member/{$art.uid}">{$art.user_name}</a> 
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										<if condition="$is_editable eq 1">
+											<a href="/topic/edit/{$art.id}">编辑</a>
+										</if>
+									</div>
+							</div>
+							
+							<div class="col-md-2">
+								<a href="/home/member/{$art.uid}"><img src="/default_head.jpg"/></a>
+							</div>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<div class="topic-content">
+									<br><p>{$art.content|htmlspecialchars_decode=###}</p>
+								</div>
+								<hr>
+								<div>
+									相关帖子:
+									<br>
+									<ul>
+									<volist name="t_relative_articles" id="vo" >
+										<li><a href="/topic/article/{$vo.id}" target="_blank">{$vo.title}</a></li>
+									</volist>
+									</ul>
+								</div>
+								
+								<hr>
+								<div align="center">
+									<a class="btn btn-success btn-lg" role="button">关注</a>
+								</div>
+							</td>
+						</tr>
+					</table>
+				</div>
+					
+				<notempty name="t_comments">
+				<div class="panel panel-default">
+					<table class="table table-bordered table-condensed well">
+						<volist name="t_comments" id="vo" key = "k">
+							<tr>
+								<td width="24">
+									<div class="col-md-11 column">
+										<div class="media">
+											<a href="#" class="pull-left"><img src="http://lorempixel.com/48/48/" class="media-object" alt=""></a>
+											<div class="media-body">
+												<a href="/topic/article/{$vo.id}">{$vo.user_name}</a> 回答于 {$vo.add_time|showtime=###} {$k}楼
+												<br>
+												<p class="media-heading">
+													{$vo.content}
+												</p> 
+												
+											</div>
+										</div>
+									</div>
+									<div class="col-md-1 column">
+									</div>
+								</td>
+							</tr>
+						</volist>
+					</table>
+				</div>
+				</notempty>
+	
+			</div>
+			
+			<div class="col-md-4 column">
+			</div>
+		</div>
+	</div>
+	
+	<include file="./App/Tpl/default/footer.html"/>
+</body>
+</html>

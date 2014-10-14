@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-cn">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+	<meta name="author" content="x-team" />
+	<meta name="Copyright" content="7bangbbs.sinaapp.com" />
+	<meta name="description" content="七磅，一个神奇的网站" />
+	<title>7bangbbs</title>
+	<script src="/js/jquery-1.8.3.js"> </script>
+	<script src="/bootstrap/js/bootstrap.js"></script>
+	<link href="/bootstrap/css/bootstrap.css" rel="stylesheet" media="screen"/>
+	
+</head>
+
+<body>
+	<?php include_once("google_analytics.php")?>
+	<include file="./App/Tpl/default/header.html"/>
+	
+	<div class='container'  style="margin-top:40px">
+		<div class="row clearfix">
+			<div class="col-md-1 column">
+			</div>
+			
+			<div class="col-md-7 column">
+				<div class="page-header">
+					<ul class="nav nav-pills">
+					<li class="active"><a href='/show/timeline/1'>最新</a></li> 
+					<volist name="t_categories" id="vo" >
+						<if condition="$vo['id'] eq 1"> 
+							<li><a href='/show/category/{$vo.id}'>{$vo.name}</a></li> 
+						<else/>
+							<li><a href='/show/category/{$vo.id}'>{$vo.name}</a></li>
+						</if>
+					</volist>
+					</ul>
+				</div>
+				
+				<div class="panel panel-default">
+					<include file="./App/Tpl/default/head_bar.html"/>
+					
+					<table class="table table-bordered table-striped table-condensed">
+						<volist name="t_articles" id="vo" >
+							<tr>
+								<td width="24">
+									<div class="col-md-11 column">
+										<div class="media">
+											<a href="#" class="pull-left"><img src="/default_head.jpg" class="media-object" alt=""></a>
+											<div class="media-body">
+												<h4 class="media-heading">
+													<a href="/topic/article/{$vo.id}">{$vo.title}</a>
+												</h4> 
+												<a href="/show/category/${vo.id}">{$vo.cname}</a>  •  <a href="/home/member/{$vo.uid}">{$vo.author}</a>  •  {$vo.add_time|showtime=### } 
+											</div>
+										</div>
+									</div>
+									<div class="col-md-1 column">
+										<if condition="$vo['comments'] gt 0">
+										<div>
+											<span class="badge pull-right">{$vo.comments}</span>
+										</div>
+										</if>
+									</div>
+								</td>
+							</tr>
+						</volist>
+					</table>
+					
+					<div align='center'>
+						<include file="./App/Tpl/default/page_bar.html"/>
+					</div>
+					
+				</div>
+				
+			</div>
+			<div class="col-md-4 column">
+				<div class="row col-md-10" style="margin-top:40px">
+					<div class="panel panel-default">
+						<table class="table table-bordered">
+							<tr>
+								<td style="text-align:center;">
+									<strong>7bangbbs：一个轻快的BBS</strong>
+								</td>
+							</tr>
+						</table>
+						
+						<table class="table table-bordered">
+							<tr>
+								<td style="text-align:center;">
+									<a href="/register"><button type="button" class="btn btn-success"><strong>立即体验</strong></button></a>
+								</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				
+				<div class="row col-md-10">
+					<div class="panel panel-default">
+						<table class="table table-bordered">
+							<tr>
+								<td>
+								</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<include file="./App/Tpl/default/footer.html"/>
+</body>
+</html>
